@@ -25,7 +25,6 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
   }
 
   void _initializeData() {
-    // Mock data initialization
     currentLocation = SoilLocation(
       id: '1',
       name: 'Field Section A',
@@ -56,7 +55,6 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
         timestamp: DateTime.now(),
         historicalData: {'2024-01': '40', '2024-02': '42', '2024-03': '45'},
       ),
-      // Add more parameters...
     ];
   }
 
@@ -94,7 +92,6 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
               currentLocation = location;
               isLoading = true;
             });
-            // Simulate loading new data
             Future.delayed(const Duration(seconds: 1), () {
               setState(() {
                 isLoading = false;

@@ -32,7 +32,6 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Logo & Branding with sleek design
                 Center(
                   child: Column(
                     children: [
@@ -79,8 +78,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 50),
-
-                // Welcome Section with glassmorphism effect
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
@@ -137,8 +134,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 40),
-
-                // Features Section with updated grid layout
                 const Text(
                   'Features',
                   style: TextStyle(

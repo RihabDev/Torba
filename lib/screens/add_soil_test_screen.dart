@@ -37,7 +37,6 @@ class _AddSoilTestScreenState extends State<AddSoilTestScreen> {
     if (_formKey.currentState!.validate()) {
       setState(() => _isProcessing = true);
 
-      // Simulate processing delay
       await Future.delayed(const Duration(seconds: 2));
 
       final List<SoilParameter> newParameters = [];

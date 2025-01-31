@@ -31,7 +31,6 @@ class SoilParameter {
         if (value < 40) return 'Low';
         if (value > 80) return 'High';
         return 'Optimal';
-      // Add more parameter-specific logic
       default:
         return 'Unknown';
     }

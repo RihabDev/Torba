@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart'; // For formatting time
-import 'package:intl/intl.dart'; // For formatting time
+import 'package:intl/intl.dart'; 
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});
@@ -33,7 +32,7 @@ class Post {
   final String avatar;
   final int likes;
   final String postTime;
-  final String? image; // Optional image for posts
+  final String? image; 
   final List<String> reactions;
 
   Post({
@@ -42,7 +41,7 @@ class Post {
     required this.avatar,
     required this.likes,
     required this.postTime,
-    this.image, // Image can be null
+    this.image,
     required this.reactions,
   });
 }
@@ -64,16 +63,16 @@ final List<Post> posts = [
     likes: 8,
     postTime: '5 hours ago',
     reactions: ['Like'],
-    image: null, // Text-only post
+    image: null, 
   ),
   Post(
     username: 'Nejia Ben Salem',
-    content: 'haja jdida f tounes vraimenet bravo',
+    content: 'haja jdida f tounes bravo',
     avatar: 'assets/images/user3.jpg',
     likes: 15,
     postTime: '1 day ago',
     reactions: ['Like'],
-    image: 'assets/images/post2.png', // Post with an image
+    image: 'assets/images/post2.png', 
   ),
 ];
 
@@ -124,7 +123,6 @@ class PostCard extends StatelessWidget {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 12),
-            // Display image if available
             if (post.image != null)
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
@@ -158,7 +156,7 @@ class PostCard extends StatelessWidget {
               ],
             ),
             const Divider(),
-            // Show reactions
+           
             Row(
               children: [
                 for (var reaction in post.reactions)

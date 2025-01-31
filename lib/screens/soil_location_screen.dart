@@ -11,7 +11,6 @@ class SoilLocationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Mock locations data
     final locations = [
       SoilLocation(
         id: '1',
@@ -66,7 +65,6 @@ class SoilLocationScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // TODO: Implement add new location functionality
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               content: Text('Add new location feature coming soon!'),

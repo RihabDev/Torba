@@ -30,8 +30,10 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
   void initState() {
     super.initState();
     _nameController = TextEditingController(text: widget.plant.name);
-    _growthStageController = TextEditingController(text: widget.plant.growthStage);
-    _nextActionController = TextEditingController(text: widget.plant.nextAction);
+    _growthStageController =
+        TextEditingController(text: widget.plant.growthStage);
+    _nextActionController =
+        TextEditingController(text: widget.plant.nextAction);
   }
 
   @override
@@ -51,10 +53,9 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
 
       if (photo != null) {
         setState(() => _isAnalyzing = true);
-        
-        // Simulate AI analysis (replace with actual AI integration)
+        //ai
         await Future.delayed(const Duration(seconds: 2));
-        
+
         setState(() {
           widget.plant.health = _mockAnalyzeHealth();
           _isAnalyzing = false;
@@ -95,9 +96,9 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Close dialog
+              Navigator.pop(context);
               widget.onDelete();
-              Navigator.pop(context); // Go back to previous screen
+              Navigator.pop(context);
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             child: const Text('Delete'),

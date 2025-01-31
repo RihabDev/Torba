@@ -94,9 +94,7 @@ class SoilParameterCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {
-                  // This will be handled by the parent's onTap
-                },
+                onPressed: () {},
                 child: const Text('View History'),
               ),
             ),
