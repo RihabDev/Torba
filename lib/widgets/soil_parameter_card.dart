@@ -7,12 +7,12 @@ class SoilParameterCard extends StatelessWidget {
   final String recommendation;
 
   const SoilParameterCard({
-    Key? key,
+    super.key,
     required this.parameter,
     required this.value,
     required this.status,
     required this.recommendation,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class IrrigationControlScreen extends StatelessWidget {
-  const IrrigationControlScreen({Key? key}) : super(key: key);
+  const IrrigationControlScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

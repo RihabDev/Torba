@@ -7,12 +7,12 @@ class IrrigationZoneCard extends StatelessWidget {
   final String nextSchedule;
 
   const IrrigationZoneCard({
-    Key? key,
+    super.key,
     required this.zoneName,
     required this.status,
     required this.moisture,
     required this.nextSchedule,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

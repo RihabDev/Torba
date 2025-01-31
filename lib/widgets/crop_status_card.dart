@@ -7,12 +7,12 @@ class CropStatusCard extends StatelessWidget {
   final String nextAction;
 
   const CropStatusCard({
-    Key? key,
+    super.key,
     required this.cropName,
     required this.growthStage,
     required this.health,
     required this.nextAction,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

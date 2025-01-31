@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class WeatherScreen extends StatefulWidget {
+  const WeatherScreen({super.key});
+
   @override
   _WeatherScreenState createState() => _WeatherScreenState();
 }
@@ -142,7 +144,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                         height: 100,
                       ),
                     Text(
-                      '$_city',
+                      _city,
                       style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
@@ -158,7 +160,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       ),
                     ),
                     Text(
-                      '$_description',
+                      _description,
                       style: TextStyle(
                         fontSize: 18,
                         fontStyle: FontStyle.italic,

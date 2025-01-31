@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/soil_parameter_card.dart';
 
 class SoilAnalysisScreen extends StatelessWidget {
-  const SoilAnalysisScreen({Key? key}) : super(key: key);
+  const SoilAnalysisScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

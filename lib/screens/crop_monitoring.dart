@@ -1,8 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../widgets/crop_status_card.dart';
 
-class CropMonitoringScreen extends StatelessWidget {
-  const CropMonitoringScreen({Key? key}) : super(key: key);
+class CropMonitoringScreen extends StatefulWidget {
+  const CropMonitoringScreen({super.key});
+
+  @override
+  State<CropMonitoringScreen> createState() => _CropMonitoringScreenState();
+}
+
+class _CropMonitoringScreenState extends State<CropMonitoringScreen> {
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _takePicture() async {
+    try {
+      final XFile? photo = await _picker.pickImage(
+        source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.rear,
+      );
+
+      if (photo != null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Photo captured successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error accessing camera: $e'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +73,9 @@ class CropMonitoringScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
-        child: const Icon(Icons.add),
+        onPressed: _takePicture,
+        tooltip: 'Take Picture',
+        child: const Icon(Icons.camera_alt),
       ),
     );
   }

@@ -8,13 +8,13 @@ class WeatherCard extends StatelessWidget {
   final String rainfall;
 
   const WeatherCard({
-    Key? key,
+    super.key,
     required this.temperature,
     required this.condition,
     required this.humidity,
     required this.windSpeed,
     required this.rainfall,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
