@@ -2,7 +2,7 @@ import 'package:agri/widgets/add_plant_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../widgets/crop_status_card.dart';
-import '../models/plant.dart'; // Ensure this path is correct and the Plant class is defined in this file
+import '../models/plant.dart';
 import 'plant_detail_screen.dart';
 import 'dart:math';
 
@@ -68,11 +68,30 @@ class _CropMonitoringScreenState extends State<CropMonitoringScreen> {
     );
   }
 
+  void _updatePlant(Plant updatedPlant) {
+    setState(() {
+      final index = plants.indexWhere((p) => p.id == updatedPlant.id);
+      if (index != -1) {
+        plants[index] = updatedPlant;
+      }
+    });
+  }
+
+  void _deletePlant(String id) {
+    setState(() {
+      plants.removeWhere((p) => p.id == id);
+    });
+  }
+
   void _openPlantDetails(Plant plant) {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => PlantDetailScreen(plant: plant),
+        builder: (context) => PlantDetailScreen(
+          plant: plant,
+          onUpdate: _updatePlant,
+          onDelete: () => _deletePlant(plant.id),
+        ),
       ),
     );
   }

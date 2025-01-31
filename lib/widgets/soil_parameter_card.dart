@@ -14,10 +14,23 @@ class SoilParameterCard extends StatelessWidget {
     required this.recommendation,
   });
 
+  Color _getStatusColor() {
+    switch (status.toLowerCase()) {
+      case 'optimal':
+        return Colors.green;
+      case 'low':
+        return Colors.orange;
+      case 'high':
+        return Colors.red;
+      default:
+        return Colors.blue;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 4,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -28,62 +41,68 @@ class SoilParameterCard extends StatelessWidget {
               children: [
                 Text(
                   parameter,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: _getStatusColor().withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: _getStatusColor(),
+                      width: 1,
+                    ),
+                  ),
+                  child: Text(
+                    status,
+                    style: TextStyle(
+                      color: _getStatusColor(),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                _buildStatusChip(status),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                const Icon(Icons.analytics, color: Colors.grey),
+                const SizedBox(width: 8),
+                Text(
+                  'Current Value: $value',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              'Value: $value',
-              style: const TextStyle(
-                fontSize: 16,
-              ),
+            Row(
+              children: [
+                const Icon(Icons.recommend, color: Colors.grey),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    recommendation,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 8),
-            Text(
-              'Recommendation: $recommendation',
-              style: const TextStyle(
-                fontSize: 14,
-                color: Colors.grey,
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  // This will be handled by the parent's onTap
+                },
+                child: const Text('View History'),
               ),
             ),
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildStatusChip(String status) {
-    Color color;
-    switch (status.toLowerCase()) {
-      case 'optimal':
-        color = Colors.green;
-        break;
-      case 'low':
-        color = Colors.red;
-        break;
-      case 'high':
-        color = Colors.orange;
-        break;
-      case 'medium':
-        color = Colors.yellow;
-        break;
-      default:
-        color = Colors.grey;
-    }
-
-    return Chip(
-      label: Text(
-        status,
-        style: TextStyle(
-          color: color == Colors.yellow ? Colors.black : Colors.white,
-        ),
-      ),
-      backgroundColor: color,
     );
   }
 }

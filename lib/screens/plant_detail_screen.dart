@@ -5,10 +5,14 @@ import 'dart:io';
 
 class PlantDetailScreen extends StatefulWidget {
   final Plant plant;
+  final Function(Plant) onUpdate;
+  final Function() onDelete;
 
   const PlantDetailScreen({
     super.key,
     required this.plant,
+    required this.onUpdate,
+    required this.onDelete,
   });
 
   @override
@@ -18,6 +22,25 @@ class PlantDetailScreen extends StatefulWidget {
 class _PlantDetailScreenState extends State<PlantDetailScreen> {
   final ImagePicker _picker = ImagePicker();
   bool _isAnalyzing = false;
+  late TextEditingController _nameController;
+  late TextEditingController _growthStageController;
+  late TextEditingController _nextActionController;
+
+  @override
+  void initState() {
+    super.initState();
+    _nameController = TextEditingController(text: widget.plant.name);
+    _growthStageController = TextEditingController(text: widget.plant.growthStage);
+    _nextActionController = TextEditingController(text: widget.plant.nextAction);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _growthStageController.dispose();
+    _nextActionController.dispose();
+    super.dispose();
+  }
 
   Future<void> _takePicture() async {
     try {
@@ -59,6 +82,84 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
     }
   }
 
+  void _showDeleteConfirmation() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Plant'),
+        content: const Text('Are you sure you want to delete this plant?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context); // Close dialog
+              widget.onDelete();
+              Navigator.pop(context); // Go back to previous screen
+            },
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showEditDialog() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Edit Plant Details'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(labelText: 'Plant Name'),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _growthStageController,
+                decoration: const InputDecoration(labelText: 'Growth Stage'),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _nextActionController,
+                decoration: const InputDecoration(labelText: 'Next Action'),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              final updatedPlant = Plant(
+                id: widget.plant.id,
+                name: _nameController.text,
+                growthStage: _growthStageController.text,
+                health: widget.plant.health,
+                nextAction: _nextActionController.text,
+                images: widget.plant.images,
+                lastUpdated: DateTime.now(),
+              );
+              widget.onUpdate(updatedPlant);
+              Navigator.pop(context);
+              setState(() {});
+            },
+            child: const Text('Save'),
+          ),
+        ],
+      ),
+    );
+  }
+
   String _mockAnalyzeHealth() {
     final healthStates = ['Excellent', 'Good', 'Fair', 'Poor'];
     return healthStates[DateTime.now().millisecond % healthStates.length];
@@ -69,6 +170,16 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.plant.name),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            onPressed: _showEditDialog,
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: _showDeleteConfirmation,
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
