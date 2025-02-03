@@ -107,7 +107,7 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Soil Analysis'),
+        title: const Text('Plant Analysis'),
         actions: [
           IconButton(
             icon: const Icon(Icons.location_on),
@@ -127,7 +127,8 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
                     children: [
                       Text('Name: ${currentLocation.name}'),
                       Text('Description: ${currentLocation.description}'),
-                      Text('Last Tested: ${currentLocation.lastTested.toString()}'),
+                      Text(
+                          'Last Tested: ${currentLocation.lastTested.toString()}'),
                     ],
                   ),
                   actions: [
@@ -166,7 +167,7 @@ class _SoilAnalysisScreenState extends State<SoilAnalysisScreen> {
             ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: _addNewSoilTest,
-        label: const Text('New Soil Test'),
+        label: const Text('New Plant Test'),
         icon: const Icon(Icons.add),
       ),
     );

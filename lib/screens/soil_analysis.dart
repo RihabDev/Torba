@@ -8,7 +8,7 @@ class SoilAnalysisScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Soil Analysis'),
+        title: const Text('Plant Analysis'),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
@@ -43,8 +43,7 @@ class SoilAnalysisScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-        },
+        onPressed: () {},
         child: const Icon(Icons.add),
       ),
     );

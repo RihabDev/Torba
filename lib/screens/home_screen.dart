@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'feed_page.dart';
+import 'chat_bot_page.dart';
 import '../widgets/feature_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -154,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   children: [
                     FeatureCard(
-                      title: 'Crop Monitoring',
+                      title: 'Plant Health',
                       icon: Icons.local_florist,
                       color: Colors.green.shade700,
                       onTap: () =>
@@ -167,15 +168,15 @@ class HomeScreen extends StatelessWidget {
                       onTap: () => Navigator.pushNamed(context, '/weather'),
                     ),
                     FeatureCard(
-                      title: 'Irrigation Control',
+                      title: 'Plant Lifecycle',
                       icon: Icons.water_drop,
                       color: Colors.lightBlue.shade700,
                       onTap: () => Navigator.pushNamed(context, '/irrigation'),
                     ),
                     FeatureCard(
-                      title: 'Soil Analysis',
-                      icon: Icons.landscape,
-                      color: Colors.brown.shade700,
+                      title: 'Plant Analysis',
+                      icon: Icons.eco,
+                      color: const Color.fromARGB(255, 204, 56, 19),
                       onTap: () =>
                           Navigator.pushNamed(context, '/soil-analysis'),
                     ),
@@ -186,6 +187,20 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const ChatBotPage()),
+          );
+        },
+        backgroundColor: Colors.green.shade700,
+        child: const Icon(
+          Icons.chat_bubble_rounded,
+          color: Colors.white,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }

@@ -1,10 +1,8 @@
 import 'package:agri/widgets/add_plant_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import '../widgets/crop_status_card.dart';
 import '../models/plant.dart';
 import 'plant_detail_screen.dart';
-import 'dart:math';
 
 class CropMonitoringScreen extends StatefulWidget {
   const CropMonitoringScreen({super.key});
@@ -100,7 +98,7 @@ class _CropMonitoringScreenState extends State<CropMonitoringScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Crop Monitoring'),
+        title: const Text('Plant Monitoring'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(16.0),

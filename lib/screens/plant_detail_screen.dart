@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../models/plant.dart';
-import 'dart:io';
 
 class PlantDetailScreen extends StatefulWidget {
   final Plant plant;

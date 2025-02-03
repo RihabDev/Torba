@@ -1,3 +1,14 @@
+package agri
+
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugins.GeneratedPluginRegistrant
+
+class MainActivity: FlutterActivity() {
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
+    }
+}
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Camera and Storage Permissions -->
     <uses-permission android:name="android.permission.CAMERA" />
